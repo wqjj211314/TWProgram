@@ -1,5 +1,6 @@
 package com.tw.main;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -100,18 +101,18 @@ public class Main {
 			Map.Entry<String,Animal> entry=(Entry<String, Animal>) it.next();
 			Animal value=entry.getValue();
 			int index=value.getNum();
-			map.put(index, value);
+			map.put(index, value);//重新构建集合
 			
 		}
-		Iterator mapit=map.entrySet().iterator();
-		while(mapit.hasNext()){
-			Map.Entry<Integer,Animal> entry=(Entry<Integer, Animal>) mapit.next();
-			Animal value=entry.getValue();
-			sb.append(value.getId()+" "+value.getX()+" "+value.getY()+"\n");
-		}
+		//排序，按照升序进行遍历
+		Object[] key=map.keySet().toArray();  
+        Arrays.sort(key);  
+        for(int i =0;i<key.length;i++)   {  
+                Animal value=map.get(key[i]);
+    			sb.append(value.getId()+" "+value.getX()+" "+value.getY()+"\n");
+        }   
+		
 		return sb.toString();
 	}
-
-	
 
 }
